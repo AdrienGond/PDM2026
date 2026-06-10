@@ -1,0 +1,143 @@
+theory:
+  camb:
+    extra_args:
+      num_massive_neutrinos: 1
+      dark_energy_model: ppf
+likelihood:
+  like_DESI_CMB_all.desi_bao_cmb_all:
+    path: C:\EPFL\MA4\code\like_DESI_CMB_all.py
+    measurements_file: C:\EPFL\MA4\code\fake_BAO_data\LCDM\exact_flat_Planck\z3.txt
+    cov_file: C:\EPFL\MA4\code\COBAYA_packages\data\bao_data\desi_bao_dr2\desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_cov.txt
+params:
+  ombh2:
+    prior:
+      min: 0.001
+      max: 0.49
+    ref:
+      dist: norm
+      loc: 0.02223
+      scale: 0.000002
+    proposal: 0.00001
+    latex: \Omega_\mathrm{b} h^2
+  omch2:
+    prior:
+      min: 0.001
+      max: 0.49
+    ref:
+      dist: norm
+      loc: 0.12
+      scale: 0.0001
+    proposal: 0.00001
+    latex: \Omega_\mathrm{c} h^2
+  thetastar:
+    prior:
+      min: 0.0
+      max: 10
+    ref:
+      dist: norm
+      loc: 0.01041
+      scale: 0.0000003
+    proposal: 0.000001
+    latex: \theta_\mathrm{\ast}
+  # hrdrag:
+  #   prior:
+  #     min: 30
+  #     max: 300
+  #   ref:
+  #     dist: norm
+  #     loc: 102
+  #     scale: 1
+  #   proposal: 0.05
+  #   latex: hr_\mathrm{d}
+  # omm:
+  #   prior:
+  #     min: 0.01
+  #     max: 0.99
+  #   ref:
+  #     dist: norm
+  #     loc: 0.35
+  #     scale: 0.003
+  #   proposal: 0.0001
+  #   latex: \Omega_\mathrm{m}
+  # H0:
+  #   prior:
+  #     min: 20
+  #     max: 120
+  #   ref:
+  #     dist: norm
+  #     loc: 70
+  #     scale: 1
+  #   proposal: 0.01
+  #   latex: H_0
+  w:
+    prior:
+      min: -3.0
+      max: 1.0
+    ref:
+      dist: norm
+      loc: -1.0
+      scale: 0.1
+    proposal: 0.0001
+    latex: w_{0}
+  wa:
+    prior:
+      min: -3.0
+      max: 2.0
+    ref:
+      dist: norm
+      loc: 0.0
+      scale: 0.5
+    proposal: 0.0001
+    latex: w_{a}
+  logA:
+    value: 3.0448
+    latex: \log(10^{10} A_\mathrm{s})
+  As:
+    value: 'lambda logA: 1e-10*np.exp(logA)'
+    latex: A_\mathrm{s}
+  # rdrag:
+  #   value: 'lambda hrdrag, H0: 100 * hrdrag / H0'
+  #   latex: r_\mathrm{d}
+  # ombh2:
+  #   latex: \Omega_\mathrm{b} h^2
+  #   value: 0.02223
+  # omch2:
+  #   value: 'lambda omm, mnu, ombh2, H0: omm*(H0/100)**2 - mnu / 93.14 - ombh2'
+  #   latex: \Omega_\mathrm{c} h^2
+  # omch2:
+  #   derived: True
+  #   latex: \Omega_\mathrm{c} h^2
+  omm:
+    derived: 'lambda ombh2, omch2, H0, mnu: (ombh2 + omch2 + mnu / 93.14) / (H0/100)**2'
+    latex: \Omega_\mathrm{m}
+  hrdrag:
+    derived: 'lambda rdrag, H0: rdrag * H0 / 100'
+    latex: hr_\mathrm{d}
+  mnu:
+    latex: \sum m_\nu
+    value: 0.06
+  nnu:
+    latex: N_\mathrm{eff}
+    value: 3.044
+  omegamh2:
+    derived: 'lambda omm, H0: omm*(H0/100)**2'
+    latex: \Omega_\mathrm{m} h^2
+  omega_de:
+    latex: \Omega_\Lambda
+  YHe:
+    latex: Y_\mathrm{P}
+  Y_p:
+    latex: Y_P^\mathrm{BBN}
+  DHBBN:
+    derived: 'lambda DH: 10**5*DH'
+    latex: 10^5 \mathrm{D}/\mathrm{H}
+  tau:
+    value: 0.054
+    latex: \tau_\mathrm{reio}
+  zrei:
+    latex: z_\mathrm{re}
+sampler:
+  mcmc:
+    covmat: C:\EPFL\MA4\code\cobaya_runs\fake_data\Planck_flat_LCDM\exact\BAO+CMB_all_run1.covmat
+    Rminus1_stop: 0.01
+output: cobaya_runs\fake_data\Planck_flat_LCDM\exact\individual_z\z3
