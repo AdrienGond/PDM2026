@@ -7,7 +7,7 @@ import sys
 ''' 
     more general version of the MPI code MPI_implementation, can be used for any config file and any number of chains. 
     The path to the config file must be given as argument when executing.
-    Execution : mpiexec -n 4 python MPI_general.py path\to\config.yaml (need to activate the right env before)
+    Execution : mpiexec -n 4 python MPI_general.py pathtoconfig.yaml (need to activate the right env before)
 '''
 def main():
     want_force = False # Set to True to force the run even if output already exists
