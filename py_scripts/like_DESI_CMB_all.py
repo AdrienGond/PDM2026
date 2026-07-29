@@ -42,4 +42,4 @@ class desi_bao_cmb_all(desi_bao_all):
         logp_cmb = -0.5 * delta_cmb @ self._cmb_cov_inv @ delta_cmb
 
         return logp_bao + logp_cmb
-        # return logp_bao
+        # return logp_cmb
