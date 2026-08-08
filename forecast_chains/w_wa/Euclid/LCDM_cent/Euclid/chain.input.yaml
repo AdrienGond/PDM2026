@@ -88,6 +88,6 @@ params:
     latex: z_\mathrm{re}
 sampler:
   mcmc:
-    covmat: C:\EPFL\MA4\code\PDM2026\forecast_chains\w_wa\DESI_fullsky\chain.covmat
+    covmat: C:\EPFL\MA4\code\PDM2026\forecast_chains\w_wa\Euclid\LCDM_cent\Euclid_corr\chain.covmat
     Rminus1_stop: 0.01
 output: chain

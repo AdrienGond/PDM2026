@@ -9,7 +9,7 @@ class desi_bao_cmb_all(desi_bao_all):
     """
     
     # order [theta_star, omega_b, omega_bc]
-    cmb_prior_mean: list    = [0.01041, 0.02223, 0.14208] # from Appendix A DESI DR2 paper
+    cmb_prior_mean: list    = [0.01041, 0.02223, 0.141434]# 0.14208=omega_m] # from Appendix A DESI DR2 paper correction: omega_bc tabulated is actually omega_c
     cmb_prior_cov: list = [
         [0.006621e-9, 0.12444e-9,  -1.1929e-9 ],
         [0.12444e-9,  21.344e-9,   -94.001e-9 ],

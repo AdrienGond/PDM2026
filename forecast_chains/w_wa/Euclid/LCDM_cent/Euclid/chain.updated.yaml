@@ -134,8 +134,8 @@ params:
     latex: Y_\mathrm{P}
     derived: true
     renames:
-    - yhe
     - yheused
+    - yhe
   Y_p:
     latex: Y_P^\mathrm{BBN}
     derived: true
@@ -159,7 +159,7 @@ sampler:
     supports_periodic_params: true
     burn_in: 0
     max_tries: 40d
-    covmat: C:\EPFL\MA4\code\PDM2026\forecast_chains\w_wa\DESI_fullsky\chain.covmat
+    covmat: C:\EPFL\MA4\code\PDM2026\forecast_chains\w_wa\Euclid\LCDM_cent\Euclid_corr\chain.covmat
     covmat_params: null
     proposal_scale: 2.4
     output_every: 60s
