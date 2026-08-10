@@ -1,0 +1,203 @@
+theory:
+  camb:
+    version: 1.6.5
+    path: null
+    speed: 0.3
+    stop_at_error: false
+    extra_args:
+      num_massive_neutrinos: 1
+      dark_energy_model: ppf
+    ignore_obsolete: false
+    external_primordial_pk: false
+    renames:
+      omegabh2: ombh2
+      omegach2: omch2
+      omegal: omega_de
+      omegak: omk
+      yhe: YHe
+      yheused: YHe
+      YpBBN: Y_p
+    input_params:
+    - As
+    - w
+    - wa
+    - H0
+    - ombh2
+    - omch2
+    - mnu
+    - nnu
+    - tau
+    output_params:
+    - omega_de
+    - YHe
+    - Y_p
+    - zrei
+    - DH
+likelihood:
+  bao.desi_dr2:
+    path: null
+    measurements_file: C:\EPFL\MA4\code\PDM2026\DESI_DR2_fiducial\all_but_one_data\all_but_z7_mean.txt
+    cov_file: C:\EPFL\MA4\code\PDM2026\DESI_DR2_fiducial\all_but_one_data\all_but_z7_cov.txt
+    rs_fid: 1
+    aliases:
+    - BAO
+    speed: 2000
+    type: BAO
+    rs_rescale: null
+    prob_dist: null
+    invcov_file: null
+    redshift: null
+    observable_1: null
+    observable_2: null
+    observable_3: null
+    grid_file: null
+    stop_at_error: false
+    version: null
+    input_params:
+    - rdrag
+    output_params: []
+params:
+  hrdrag:
+    prior:
+      min: 30
+      max: 300
+    ref:
+      dist: norm
+      loc: 100
+      scale: 1
+    proposal: 0.5
+    latex: hr_\mathrm{d}
+  omm:
+    prior:
+      min: 0.01
+      max: 0.99
+    ref:
+      dist: norm
+      loc: 0.3
+      scale: 0.001
+    proposal: 0.0005
+    latex: \Omega_\mathrm{m}
+  w:
+    prior:
+      min: -3.0
+      max: 1.0
+    ref:
+      dist: norm
+      loc: -1.0
+      scale: 0.02
+    proposal: 0.02
+    latex: w_{0}
+  wa:
+    prior:
+      min: -3.0
+      max: 2.0
+    ref:
+      dist: norm
+      loc: 0.0
+      scale: 0.05
+    proposal: 0.05
+    latex: w_{a}
+  logA:
+    value: 3.0448
+    latex: \log(10^{10} A_\mathrm{s})
+  As:
+    value: 'lambda logA: 1e-10*np.exp(logA)'
+    latex: A_\mathrm{s}
+    derived: true
+  H0:
+    value: 70
+    latex: H_0
+  rdrag:
+    value: 'lambda hrdrag, H0: 100 * hrdrag / H0'
+    latex: r_\mathrm{d}
+    derived: true
+  ombh2:
+    latex: \Omega_\mathrm{b} h^2
+    value: 0.02223
+    renames:
+    - omegabh2
+  omch2:
+    value: 'lambda omm, mnu, ombh2, H0: omm*(H0/100)**2 - mnu / 93.14 - ombh2'
+    latex: \Omega_\mathrm{c} h^2
+    derived: true
+    renames:
+    - omegach2
+  mnu:
+    latex: \sum m_\nu
+    value: 0.06
+  nnu:
+    latex: N_\mathrm{eff}
+    value: 3.044
+  omegamh2:
+    derived: 'lambda omm, H0: omm*(H0/100)**2'
+    latex: \Omega_\mathrm{m} h^2
+  omega_de:
+    latex: \Omega_\Lambda
+    derived: true
+    renames:
+    - omegal
+  YHe:
+    latex: Y_\mathrm{P}
+    derived: true
+    renames:
+    - yhe
+    - yheused
+  Y_p:
+    latex: Y_P^\mathrm{BBN}
+    derived: true
+    renames:
+    - YpBBN
+  DHBBN:
+    derived: 'lambda DH: 10**5*DH'
+    latex: 10^5 \mathrm{D}/\mathrm{H}
+  tau:
+    value: 0.054
+    latex: \tau_\mathrm{reio}
+  zrei:
+    latex: z_\mathrm{re}
+    derived: true
+  chi2__BAO:
+    latex: \chi^2_\mathrm{BAO}
+    derived: true
+sampler:
+  mcmc:
+    sampler_type: mcmc
+    supports_periodic_params: true
+    burn_in: 0
+    max_tries: 40d
+    covmat: C:\EPFL\MA4\code\old_stuff.bak\cobaya_runs\DESI_data\base_w_wa\all_but_one_z\all_but_z7.covmat
+    covmat_params: null
+    proposal_scale: 2.4
+    output_every: 60s
+    learn_every: 40d
+    temperature: 1
+    learn_proposal: true
+    learn_proposal_Rminus1_max: 2.0
+    learn_proposal_Rminus1_max_early: 30.0
+    learn_proposal_Rminus1_min: 0.0
+    max_samples: .inf
+    Rminus1_stop: 0.01
+    Rminus1_cl_stop: 0.2
+    Rminus1_cl_level: 0.95
+    Rminus1_single_split: 4
+    measure_speeds: true
+    oversample_power: 0.4
+    oversample_thin: true
+    drag: false
+    blocking:
+    - - 1
+      - - omm
+        - w
+        - wa
+    - - 2
+      - - hrdrag
+    callback_function: null
+    callback_every: null
+    seed: null
+    check_every: null
+    oversample: null
+    drag_limits: null
+    fallback_covmat_scale: 4
+    version: 3.6.1
+output: chain
+version: 3.6.1
