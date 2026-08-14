@@ -6,7 +6,7 @@ theory:
 likelihood:
   bao.desi_dr2:
     path: null
-    measurements_file: C:\EPFL\MA4\code\PDM2026\forecast_cov_mat\DESI_like\DESI_split_LRG3ELG1\mean_LCDM_fid.txt
+    measurements_file: C:\EPFL\MA4\code\PDM2026\forecast_cov_mat\DESI_like\DESI_split_LRG3ELG1\mean_LCDM_fid_zeff.txt
     cov_file: C:\EPFL\MA4\code\PDM2026\forecast_cov_mat\DESI_like\DESI_split_LRG3ELG1\cov_DM_DH.txt
 params:
   logA:
@@ -94,6 +94,6 @@ params:
     latex: z_\mathrm{re}
 sampler:
   mcmc:
-    covmat: C:\EPFL\MA4\code\PDM2026\forecast_chains\w_wa\DESI_split_Lya\DMrd_DHrd\chain.covmat
+    covmat: C:\EPFL\MA4\code\PDM2026\forecast_chains\w_wa\DESI_split_LRG3ELG1\DMrd_DHrd\chain.covmat
     Rminus1_stop: 0.01
-output: C:\EPFL\MA4\code\PDM2026\forecast_chains\w_wa\DESI_split_LRG3ELG1\DMrd_DHrd\chain
+output: C:\EPFL\MA4\code\PDM2026\forecast_chains\w_wa\DESI_split_LRG3ELG1\DMrd_DHrd\zeff\chain
